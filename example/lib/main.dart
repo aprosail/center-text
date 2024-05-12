@@ -1,3 +1,4 @@
+import 'package:center_text/center_text.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,17 +12,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: Probe(),
+        body: CenterText('center text'),
       ),
     );
-  }
-}
-
-class Probe extends StatelessWidget {
-  const Probe({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('probe'));
   }
 }
