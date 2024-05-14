@@ -1,0 +1,8 @@
+name: review
+
+on:
+  push: {branches: ["main", "dev"]}
+  pull_request: {branches: ["main", "dev"]}
+
+jobs:
+  review: {uses: aprosail/templates/.github/workflows/flutter-review.yaml@main}
