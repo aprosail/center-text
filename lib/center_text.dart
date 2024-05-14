@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:wrap/wrap.dart';
 
 class CenterText extends StatefulWidget {
   const CenterText(this.text, {super.key});
@@ -29,6 +30,6 @@ class _CenterTextState extends State<CenterText>
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(widget.text));
+    return Center(child: Text(widget.text)).ensureTextEnvironment(context);
   }
 }
