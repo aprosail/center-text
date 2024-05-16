@@ -27,10 +27,11 @@ class _CenterTextState extends State<CenterText>
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _options = context.findAndDefault(const CenterTextOptions());
       _hues = _options.hues;
-      _controller = AnimationController(vsync: this)
+      _controller
         ..duration = _options.backgroundDuration
         ..addListener(() => setState(() {}))
         ..repeat(reverse: true);
