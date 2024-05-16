@@ -56,7 +56,8 @@ class _CenterTextState extends State<CenterText>
       _options.backgroundVibration,
     ).toColor();
 
-    return Center(child: Text(widget.text))
+    return Text(widget.text)
+        .wrapCenter
         .wrapBackground(background)
         .ensureTextEnvironment(context);
   }
