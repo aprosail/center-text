@@ -8,7 +8,7 @@ environment: {sdk: ">=3.3.4 <4.0.0", flutter: ">=3.19.6"}
 
 dependencies:
   flutter: {sdk: flutter}
-  wrap: ^0.2.0
+  wrap: ^0.3.0
 
 dev_dependencies:
   flutter_test: {sdk: flutter}
