@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wrap/wrap.dart';
 
@@ -13,7 +12,7 @@ class CenterText extends StatefulWidget {
 
 class _CenterTextState extends State<CenterText>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late final AnimationController _controller;
 
   @override
   void initState() {
