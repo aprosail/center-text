@@ -21,6 +21,7 @@ class CenterText extends StatefulWidget {
 class _CenterTextState extends State<CenterText>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
+  late var _height = MediaQuery.of(context).size.height;
   var _options = const CenterTextOptions.transparent();
   var _hues = const CenterTextHues.zero();
 
@@ -56,10 +57,19 @@ class _CenterTextState extends State<CenterText>
       _options.backgroundVibration,
     ).toColor();
 
-    return widget.text.textWidget
-        .wrapFontSize(context, 45)
+    return widget.text
+        .text(align: TextAlign.center)
+        .modifyTextStyle(
+          context,
+          (raw) => raw.copyWith(
+            fontSize: _height / 6.18,
+            fontWeight: FontWeight.w900,
+          ),
+        )
         .wrapCenter
+        .wrapPadding(EdgeInsets.all(_height / 10))
         .wrapBackground(background)
+        .listenSizeChange(this, (size) => _height = size.height)
         .ensureTextEnvironment(context);
   }
 }
