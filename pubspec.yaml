@@ -8,6 +8,7 @@ environment: {sdk: ">=3.3.4 <4.0.0", flutter: ">=3.19.6"}
 
 dependencies:
   flutter: {sdk: flutter}
+  inherit: ^0.1.0
   wrap: ^0.3.0
 
 dev_dependencies:

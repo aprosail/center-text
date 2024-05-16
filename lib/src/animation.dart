@@ -1,27 +1,18 @@
-import 'dart:math';
-
 import 'package:flutter/widgets.dart';
+import 'package:inherit/inherit.dart';
 import 'package:wrap/wrap.dart';
+
+import 'options.dart';
 
 class CenterText extends StatefulWidget {
   const CenterText(
     this.text, {
     super.key,
-    this.backgroundDuration = const Duration(milliseconds: 1200),
-    this.foregroundDuration = const Duration(milliseconds: 735),
-    this.backgroundOpacity = 0.3,
-    this.backgroundSaturation = 0.5,
-  }) : assert(
-          backgroundOpacity >= 0 && backgroundOpacity <= 1,
-          'background opacity must be between 0 and 1: $backgroundOpacity',
-        );
+    this.options,
+  });
 
   final String text;
-
-  final Duration backgroundDuration;
-  final Duration foregroundDuration;
-  final double backgroundOpacity;
-  final double backgroundSaturation;
+  final CenterTextOptions? options;
 
   @override
   State<CenterText> createState() => _CenterTextState();
@@ -29,18 +20,21 @@ class CenterText extends StatefulWidget {
 
 class _CenterTextState extends State<CenterText>
     with SingleTickerProviderStateMixin {
-  final _curve = CurveTween(curve: Curves.easeInOut);
   late final AnimationController _controller;
-  late final double _hue;
+  var _options = const CenterTextOptions.transparent();
+  var _hues = const CenterTextHues.zero();
 
   @override
   void initState() {
     super.initState();
-    _hue = Random().nextDouble() * 360;
-    _controller = AnimationController(vsync: this)
-      ..duration = widget.backgroundDuration
-      ..addListener(() => setState(() {}))
-      ..repeat(reverse: true);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _options = context.findAndDefault(const CenterTextOptions());
+      _hues = _options.hues;
+      _controller = AnimationController(vsync: this)
+        ..duration = _options.backgroundDuration
+        ..addListener(() => setState(() {}))
+        ..repeat(reverse: true);
+    });
   }
 
   @override
@@ -51,15 +45,18 @@ class _CenterTextState extends State<CenterText>
 
   @override
   Widget build(BuildContext context) {
-    final color = HSVColor.fromAHSV(
-      _curve.transform(_controller.value) * widget.backgroundOpacity,
-      _hue,
-      0.5,
-      0.5,
-    );
+    final value = _controller.value;
+    final backgroundValue = _options.backgroundCurve.transform(value);
+
+    final background = HSVColor.fromAHSV(
+      _options.backgroundOpacity * backgroundValue,
+      _hues.background,
+      _options.backgroundSaturation,
+      _options.backgroundVibration,
+    ).toColor();
 
     return Center(child: Text(widget.text))
-        .wrapBackground(color.toColor())
+        .wrapBackground(background)
         .ensureTextEnvironment(context);
   }
 }
