@@ -48,8 +48,8 @@ class _CenterTextState extends State<CenterText>
   @override
   Widget build(BuildContext context) {
     final value = _controller.value;
-    final backgroundValue = _options.backgroundCurve.transform(value);
 
+    final backgroundValue = _options.backgroundCurve.transform(value);
     final background = HSVColor.fromAHSV(
       _options.backgroundOpacity * backgroundValue,
       _hues.background,
