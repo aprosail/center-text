@@ -5,6 +5,10 @@ description: >
 version: 0.1.0
 repository: https://github.com/aprosail/center-text
 environment: {sdk: ">=3.3.4 <4.0.0", flutter: ">=3.19.6"}
+topics:
+  - debug
+  - placeholder
+  - flutter-widget
 
 dependencies:
   flutter: {sdk: flutter}
