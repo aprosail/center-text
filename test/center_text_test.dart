@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('placeholder', () => expect(1 + 1, 2));
-
   testWidgets('example as placeholder', (t) async {
     await t.pumpWidget(const MaterialApp(home: Scaffold(body: Example())));
     expect(find.text('example widget'), findsOneWidget);
