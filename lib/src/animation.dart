@@ -56,7 +56,8 @@ class _CenterTextState extends State<CenterText>
       _options.backgroundVibration,
     ).toColor();
 
-    return Text(widget.text)
+    return widget.text.textWidget
+        .wrapFontSize(context, 45)
         .wrapCenter
         .wrapBackground(background)
         .ensureTextEnvironment(context);
